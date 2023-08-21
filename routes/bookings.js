@@ -40,7 +40,7 @@ router.route('/:id').get((req,res)=>{
 })
 
 //delete by Id
-router.route('/:id').delete((req,res)=>{
+router.route('delete/:id').delete((req,res)=>{
     Booking.findByIdAndDelete(req.params.id)
     .then(() =>res.json("Booking Deleted"))
     .catch(err => res.status(400).json("Error", + err))

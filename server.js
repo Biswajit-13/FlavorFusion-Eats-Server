@@ -11,6 +11,8 @@ app.use(cors());
 app.use(express.json());
 
 
+
+
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri
 )
@@ -23,11 +25,15 @@ const bookingsRouter = require('./routes/bookings')
 const authRouter = require('./routes/auth');
 const cartRouter = require('./routes/carts');
 const orderRouter = require('./routes/orders')
+const itemRouter = require('./routes/items')
+app.use(express.json({ limit: '20mb' }));
 
 app.use('/bookings',bookingsRouter)
 app.use('/auth', authRouter);
 app.use('/cart',cartRouter);
 app.use('/orders',orderRouter);
+app.use('/items',itemRouter);
+
 
 app.listen(port,()=> {
     console.log(`Server running on port:${port}`);

@@ -2,10 +2,18 @@ const router = require('express').Router();
 
 let Order = require('../models/orders.model.js');
 
+//get all the orders
 router.route('/').get((req, res) => {
     Order.find()
         .then(orders => res.json(orders))
         .catch(err => res.status(400).json('Error:' + err))
+})
+
+//get by id
+router.route('/:id').get((req,res)=>{
+    Order.findById(req.params.id)
+    .then(order =>res.json(order))
+    .catch(err => res.status(400).json("Error", + err))
 })
 
 //place order
